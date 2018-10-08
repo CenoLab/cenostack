@@ -1,0 +1,78 @@
+#kanban-add-new-card {
+    float: left;
+    height: 100%;
+    text-align: center;
+    color: rgb(226, 228, 230);
+    border-radius: 6px;
+    display: table-cell;
+    vertical-align: middle;
+}
+
+.kanban-card-item {
+    background: #fff;
+    border: solid 1px #fff;
+    padding: 0;
+    margin: 0;
+    border-radius: 2px;
+    padding: 0.5em;
+    margin-top: 0.5em;
+}
+
+.kanban-card-item:hover {
+    border: dashed 1px #1e87f0;
+}
+
+#kanban-add-new-card:hover {
+    background: #fff;
+    opacity: 0.3;
+    color: #000;
+    border: dashed 1px #1e87f0;
+}
+
+
+/* in-flight clone */
+
+.gu-mirror {
+    position: fixed !important;
+    margin: 0 !important;
+    z-index: 9999 !important;
+    opacity: 0.8;
+    -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=80)";
+    filter: alpha(opacity=80);
+    pointer-events: none;
+}
+
+
+/* high-performance display:none; helper */
+
+.gu-hide {
+    left: -9999px !important;
+}
+
+
+/* added to mirrorContainer (default = body) while dragging */
+
+.gu-unselectable {
+    -webkit-user-select: none !important;
+    -moz-user-select: none !important;
+    -ms-user-select: none !important;
+    user-select: none !important;
+}
+
+
+/* added to the source element while its mirror is dragged */
+
+.gu-transit {
+    opacity: 0.2;
+    -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=20)";
+    filter: alpha(opacity=20);
+}
+
+.uk-tab::before {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 20px;
+    right: 0;
+    /* border-bottom: 1px solid #e5e5e5; */
+}

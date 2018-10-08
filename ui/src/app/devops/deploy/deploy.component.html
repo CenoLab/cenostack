@@ -1,0 +1,307 @@
+<app-left></app-left>
+<div class="col-md-11" style="padding: 1em;height:5%;display:table-cell;vertical-align:middle;font-weight:bolder;background: transparent;color: #fff;z-index:99;">
+
+    <ul class="uk-breadcrumb">
+        <li><a href="#">DevOps</a></li>
+        <li><a href="#">服务</a></li>
+        <li><a href="#">Java</a></li>
+        <li><span>部署</span></li>
+    </ul>
+</div>
+<div class="col-md-11" style="padding: 1em;background: transparent;height:90%;">
+
+    <div class="col-md-12" style="padding: 0;background: #fff;padding-bottom: 2em;height:100%;overflow: auto;border-radius: 6px;">
+        <div class="col-md-12">
+            <div class="col-md-12" style="margin-top:1em;margin-bottom: 2em;">
+
+                <div id="progress" class="uk-margin">
+                    <div class="uk-form-controls">
+                        <progress id="js-progressbar" class="uk-progress" [value]="progress" max="100"></progress>
+                        <p id="progress_p">部署中... 请稍候...</p>
+                    </div>
+                </div>
+
+
+                <ul class="uk-tab" uk-tab>
+                    <li (click)="changeTab('git')" class="uk-active">
+                        <a href="#git"> 代码 </a>
+                    </li>
+                    <li (click)="changeTab('build')">
+                        <a href="#build"> 构建 </a>
+                    </li>
+                    <li (click)="changeTab('deploy')">
+                        <a href="#deploy"> 部署 </a>
+                    </li>
+                </ul>
+                <div id="git" class="uk-form-horizontal uk-margin-large">
+                    <div class="uk-margin">
+                        <label class="uk-form-label" for="form-horizontal-text">git地址</label>
+                        <div class="uk-form-controls">
+                            <input (keyup)="gitPathChange($event)" class="uk-input" type="text" placeholder="请输入git地址">
+                        </div>
+                    </div>
+
+                    <div class="uk-margin">
+                        <label class="uk-form-label" for="form-horizontal-text">git用户名</label>
+                        <div class="uk-form-controls">
+                            <input (keyup)="gitUserChange($event)" class="uk-input" type="text" placeholder="请输入git用户名">
+                        </div>
+                    </div>
+                    <div class="uk-margin">
+                        <label class="uk-form-label" for="form-horizontal-text">git密码</label>
+                        <div class="uk-form-controls">
+                            <input (keyup)="gitPasswordChange($event)" class="uk-input" type="password" placeholder="请输入git密码">
+                        </div>
+                    </div>
+                    <div class="uk-margin">
+                        <label class="uk-form-label" for="form-horizontal-text">本地代码地址</label>
+                        <div class="uk-form-controls">
+                            <input (keyup)="gitCodePathChange($event)" class="uk-input" type="text" readonly="readonly" value="/export/devops/code/" placeholder="本地代码地址">
+                        </div>
+                    </div>
+                    <button (click)="updateCode()" class="uk-button uk-button-primary">
+            拉取
+          </button>
+
+                    <div id="modal-overflow" uk-modal style="z-index:999;">
+                        <div class="uk-modal-dialog">
+
+                            <button class="uk-modal-close-default" type="button" uk-close></button>
+
+                            <div class="uk-modal-header">
+                                <h2 class="uk-modal-title">日志</h2>
+                            </div>
+
+                            <div class="uk-modal-body" uk-overflow-auto>
+                                <li *ngFor="let log of logs" style="margin-top:0.5em;">
+                                    <p class={{log.class}}>{{log.log}}</p>
+                                </li>
+                            </div>
+
+                            <div class="uk-modal-footer uk-text-right">
+                                <button class="uk-button uk-button-default uk-modal-close" type="button">Cancel</button>
+                                <button class="uk-button uk-button-primary" type="button">Save</button>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+
+
+
+                <div id="build" class="uk-form-horizontal uk-margin-large" style="margin-top:2em;">
+
+                    <div class="uk-margin">
+                        <label class="uk-form-label" for="form-horizontal-text">本地代码地址</label>
+                        <div class="uk-form-controls">
+                            <input class="uk-input" type="text" readonly="readonly" value="/export/devops/code/" placeholder="本地代码地址">
+                        </div>
+                    </div>
+                    <div class="uk-margin">
+                        <label class="uk-form-label" for="form-horizontal-text">build 地址</label>
+                        <div class="uk-form-controls">
+                            <input class="uk-input" type="text" readonly="readonly" value="/export/devops/build/" placeholder="build 地址:">
+                        </div>
+                    </div>
+
+                    <div class="uk-margin">
+
+                        <label class="uk-form-label" for="form-horizontal-text">git目录</label>
+                        <div class="uk-form-controls">
+                            <select (mouseup)="buildGitProjectChange($event)" class="uk-select">
+                <option *ngFor="let dir of gitProjectDir" value="{{dir}}">
+                  {{dir}}
+                </option>
+              </select>
+                        </div>
+                    </div>
+                    <div class="uk-margin">
+                        <label class="uk-form-label" for="form-horizontal-text">分支</label>
+                        <div class="uk-form-controls">
+                            <select (mouseup)="buildGitBranchChange($event)" class="uk-select">
+                <option *ngFor="let branch of gitProjectBranchs" value="{{branch}}">
+                  {{branch}}
+                </option>
+              </select>
+                        </div>
+                    </div>
+                    <div class="uk-margin">
+                        <label class="uk-form-label" for="form-horizontal-text">项目名</label>
+                        <div class="uk-form-controls">
+                            <input class="uk-input" [value]="buildCode.projectName" type="text" placeholder="项目名">
+                        </div>
+                    </div>
+
+
+                    <button (click)="codeBuild()" class="uk-button uk-button-primary">
+            构建
+          </button>
+
+                    <div id="modal-overflow" uk-modal style="z-index:999;">
+                        <div class="uk-modal-dialog">
+
+                            <button class="uk-modal-close-default" type="button" uk-close></button>
+
+                            <div class="uk-modal-header">
+                                <h2 class="uk-modal-title">日志</h2>
+                            </div>
+
+                            <div class="uk-modal-body" uk-overflow-auto>
+                                <li *ngFor="let log of logs" style="margin-top:0.5em;">
+                                    <p class={{log.class}}>{{log.log}}</p>
+                                </li>
+                            </div>
+
+                            <div class="uk-modal-footer uk-text-right">
+                                <button class="uk-button uk-button-default uk-modal-close" type="button">Cancel</button>
+                                <button class="uk-button uk-button-primary" type="button">Save</button>
+                            </div>
+
+                        </div>
+                    </div>
+
+
+                </div>
+
+
+                <div id="deploy" class="uk-form-horizontal uk-margin-large" style="margin-top:2em;">
+
+
+                    <div class="uk-margin">
+                        <label class="uk-form-label" for="form-horizontal-text">build 地址</label>
+                        <div class="uk-form-controls">
+                            <input class="uk-input" type="text" readonly="readonly" [value]="deployPackage.buildPath" placeholder="build 地址:">
+                        </div>
+                    </div>
+
+                    <div class="uk-margin">
+                        <label class="uk-form-label" for="form-horizontal-text">容器</label>
+                        <div class="uk-form-controls">
+                            <select (mouseup)="buildContainerChange($event)" class="uk-select">
+                <option *ngFor="let container of containers" value="{{container.container.name}}">
+                  {{container.container.name}}
+                </option>
+              </select>
+                        </div>
+                    </div>
+
+                    <div class="uk-margin">
+                        <label class="uk-form-label" for="form-horizontal-text">项目</label>
+                        <div class="uk-form-controls">
+                            <select (mouseup)="buildProjectChange($event)" class="uk-select">
+                <option *ngFor="let project of buildProjectDir" value="{{project}}">
+                  {{project}}
+                </option>
+              </select>
+                        </div>
+                    </div>
+
+                    <div class="uk-margin">
+                        <label class="uk-form-label" for="form-horizontal-text">构建分支</label>
+                        <div class="uk-form-controls">
+
+                            <select (mouseup)="buildProjectBranchChange($event)" class="uk-select">
+                <option *ngFor="let branch of buildProjectBranchs" value="{{branch}}">
+                  {{branch}}
+                </option>
+              </select>
+                        </div>
+                    </div>
+
+                    <div class="uk-margin">
+                        <label class="uk-form-label" for="form-horizontal-text">构建版本</label>
+                        <div class="uk-form-controls">
+
+                            <select (mouseup)="buildProjectVersionChange($event)" class="uk-select">
+                <option *ngFor="let version of buildProjectVersion" value="{{version}}">
+                  {{version}}
+                </option>
+              </select>
+                        </div>
+                    </div>
+
+                    <div class="uk-margin">
+                        <label class="uk-form-label" for="form-horizontal-text">容器部署目录</label>
+                        <div class="uk-form-controls">
+                            <input [value]="deployPackage.remoteDeployPath" class="uk-input" type="text" value="" placeholder="容器部署目录">
+                        </div>
+                    </div>
+                    <div class="uk-margin">
+                        <label class="uk-form-label" for="form-horizontal-text">运行日志目录</label>
+                        <div class="uk-form-controls">
+                            <input [value]="deployPackage.remoteLogPath" class="uk-input" type="text" placeholder="运行日志目录">
+                        </div>
+                    </div>
+                    <div class="uk-margin">
+                        <label class="uk-form-label" for="form-horizontal-text">JVM 参数</label>
+                        <div class="uk-form-controls">
+                            <input [value]="deployPackage.jvmOptions" class="uk-input" type="text" placeholder=" JVM 参数">
+                        </div>
+                    </div>
+
+                    <div class="uk-margin">
+                        <label class="uk-form-label" for="form-horizontal-text">环境</label>
+                        <div class="uk-form-controls uk-form-controls-text">
+                            <label><input class="uk-radio" type="radio" name="env">&nbsp;&nbsp;&nbsp;生产&nbsp;[prod]</label><br>
+                            <label><input class="uk-radio" type="radio" name="env">&nbsp;&nbsp;&nbsp;预发&nbsp;[gray]</label><br>
+                            <label><input class="uk-radio" type="radio" name="env">&nbsp;&nbsp;&nbsp;其它<input class="uk-input" type="text" name="env" placeholder="其它"/></label><br>
+
+                        </div>
+                    </div>
+
+
+                    <div class="uk-margin">
+                        <label class="uk-form-label" for="form-horizontal-text">其他选项</label>
+                        <div class="uk-form-controls">
+                            <div class="uk-margin uk-grid-small uk-child-width-auto uk-grid">
+                                <label>
+                  <input class="uk-checkbox" type="checkbox">&nbsp;&nbsp;&nbsp;部署Tomcat</label>
+                                <label>
+                  <input class="uk-checkbox" type="checkbox">&nbsp;&nbsp;&nbsp;部署监控</label>
+                                <label>
+                      <input class="uk-checkbox" type="checkbox">&nbsp;&nbsp;&nbsp;部署Nginx</label>
+                            </div>
+                        </div>
+                    </div>
+                    <button (click)="packageDeploy()" class="uk-button uk-button-primary">
+            部署
+          </button>
+
+                    <div id="modal-overflow" uk-modal style="z-index:999;">
+                        <div class="uk-modal-dialog">
+
+                            <button class="uk-modal-close-default" type="button" uk-close></button>
+
+                            <div class="uk-modal-header">
+                                <h2 class="uk-modal-title">日志</h2>
+                            </div>
+
+                            <div class="uk-modal-body" uk-overflow-auto>
+                                <li *ngFor="let log of logs" style="margin-top:0.5em;">
+                                    <p class={{log.class}}>{{log.log}}</p>
+                                </li>
+                            </div>
+
+                            <div class="uk-modal-footer uk-text-right">
+                                <button class="uk-button uk-button-default uk-modal-close" type="button">Cancel</button>
+                                <button class="uk-button uk-button-primary" type="button">Save</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="col-md-11" style="padding: 1em;background: transparent;height:5%;text-align: center;">
+    <span style="color:#aaa;">CENOSTACK.COM 构建敏捷团队</span>&nbsp;&nbsp;
+    <a href="Mailto:nerosoft@outlook.com" style="color:#eee;">@CENOSTACK</a>&nbsp;&nbsp;
+    <span style="color:#aaa;">V1.7.11 Alpha</span>
+    <span>
+    <span class="fa fa-github fa-1x" style="color:#aaa;margin-left: 1em;"></span>
+    <span class="fa fa-qq fa-1x" style="color:#aaa;margin-left: 1em;"></span>
+    <span class="fa fa-weixin fa-1x" style="color:#aaa;margin-left: 1em;"></span>
+    <span class="fa fa-weibo fa-1x" style="color:#aaa;margin-left: 1em;"></span>
+    </span>
+</div>

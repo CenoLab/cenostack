@@ -1,0 +1,32 @@
+<div class="col-md-12" id="header-div" style="height:5%;background:transparent;font-size: 1em;">
+
+    <a href="dashboard">
+        <div class="col-md-1" style="height:100%;text-align: center;font-weight: bolder;display:table;">
+            <img style="height:100%;padding: 10%;" src="http://localhost:4200/assets/devops_logo.png" />
+
+            <span style="color:#aaa;font-size: 1.5em;">Dev</span>
+            <span style="color:#ce592b;font-size: 1.5em;">Ops</span>
+
+        </div>
+    </a>
+    <div class="col-md-9">
+
+    </div>
+    <div class="col-md-1" style="height:100%;display:table;">
+
+        <span class="fa fa-user-circle" style="display:table-cell;vertical-align:middle;color:#888;"></span>&nbsp;
+        <a id="profile_name" href="/profile" style="display:table-cell;vertical-align:middle;color:#888;font-weight: bolder;">devops</a>&nbsp;
+
+    </div>
+    <div class="col-md-1" style="height:100%;display:table;">
+        <span class="fa fa-sign-out" style="display:table-cell;vertical-align:middle;color:#888;"></span>&nbsp;
+        <a id="profile_logout_bt" (click)="logout()" style="display:table-cell;vertical-align:middle;color:#888;font-weight: bolder;">退出登录</a>
+    </div>
+    <div id="header_modal" id="modal-close-outside" uk-modal class="uk-modal uk-open" style="z-index:999;display:none;border-radius: 6px;">
+        <div class="uk-modal-dialog uk-modal-body" style="border-radius: 6px;">
+            <button class="uk-modal-close-outside" type="button" uk-close></button>
+            <h2 id="header_tip_top" class="uk-modal-title">错误:</h2>
+            <h3 id="header_tip">Outside</h3>
+        </div>
+    </div>
+</div>

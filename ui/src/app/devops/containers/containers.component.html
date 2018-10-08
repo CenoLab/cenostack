@@ -1,0 +1,153 @@
+<app-left></app-left>
+<div class="col-md-11" style="padding: 1em;height:5%;display:table-cell;vertical-align:middle;font-weight:bolder;color: #fff;background: transparent;z-index:99;">
+    <ul class="uk-breadcrumb">
+        <li><a href="#">DevOps</a></li>
+        <li><a href="#">容器</a></li>
+        <li><span>列表</span></li>
+    </ul>
+</div>
+<div class="col-md-11" style="padding: 1em;background: transparent;height: 90%;">
+
+    <div id="left_container_list" class="col-md-12" style="padding: 1em;background: #fff;height: 100%;overflow: auto;border-radius: 6px;">
+
+        <div class="col-md-12" style="margin-top:0em;margin-bottom: 2em;">
+
+            <div id="progress" class="uk-margin">
+                <div class="uk-form-controls">
+                    <progress id="js-progressbar" class="uk-progress" [value]="progress" max="100"></progress>
+                    <p id="progress_p">部署中... 请稍候...</p>
+                </div>
+            </div>
+
+            <ul class="uk-tab" uk-tab>
+                <li class="uk-active">
+                    <a href="#container"> 容器 </a>
+                </li>
+            </ul>
+            <div class="col-md-12" style="padding: 1em;">
+                <div class="col-md-12" style="padding:0;margin:0;overflow: auto;">
+                    <table class="uk-table uk-table-divider">
+
+                        <thead>
+                            <tr>
+                                <th>容器名称</th>
+                                <th>地址</th>
+                                <th>说明</th>
+                                <th>服务数量</th>
+                                <th>内存</th>
+                                <th>cpu</th>
+                                <th>磁盘</th>
+
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <!-- <tfoot>
+              <tr>
+                  <th>容器名称</th>
+                  <th>地址</th>
+                  <th>服务数量</th>
+                  <th>状态</th>
+                  <th>内存</th>
+                  <th>cpu</th>
+                  <th>磁盘</th>
+                  <th>启动时间</th>
+                  <th>运行时长</th>
+                  <th>操作</th>
+              </tr>
+          </tfoot> -->
+                        <tbody>
+
+                            <tr *ngFor="let container of containers">
+                                <th><span class="cc-span cc-span-normal">Docker</span>&nbsp;{{container.container.name}}</th>
+                                <th>{{container.container.address}}</th>
+                                <th>{{container.container.desc}}</th>
+                                <th>
+                                    <a (click)="showServices(container.container.name)" class="uk-link-muted" (mouseenter)="serviceCntMouseEnter(container.container.name)" uk-tooltip="点击查看服务列表">{{container.container.serviceCnt}}</a>
+                                </th>
+                                <th style="color:green;">{{container.containerOther.mem}}%</th>
+                                <th style="color:green;">{{container.containerOther.cpu}}%</th>
+                                <th style="color:green;">{{container.containerOther.disk}}%</th>
+
+                                <th>
+                                    <button id="bt_detail" class="cc-button" disabled="disabled">详情</button>&nbsp;
+                                    <button id="bt_status" (click)="checkStatus(container.container.name,'bt_reconfig')" class="cc-button cc-button-ring-blue">状态</button>&nbsp;
+                                    <button id="bt_reconfig" (click)="reConfig(container.container.name,'bt_reconfig')" class="cc-button cc-button-ring-blue">配置</button>&nbsp;
+                                    <button id="bt_restart" (click)="reStart(container.container.name,'bt_restart')" class="cc-button cc-button-ring-blue">重启</button>&nbsp;
+                                    <button id="bt_stop" (click)="stop(container.container.name,'bt_stop')" class="cc-button cc-button-ring-blue">停止</button>&nbsp;
+                                </th>
+                            </tr>
+
+                        </tbody>
+                    </table>
+                </div>
+                <div id="modal-overflow" uk-modal>
+                    <div class="uk-modal-dialog">
+
+                        <button class="uk-modal-close-default" type="button" uk-close></button>
+
+                        <div class="uk-modal-header">
+                            <h2 class="uk-modal-title">日志</h2>
+                        </div>
+
+                        <div class="uk-modal-body" uk-overflow-auto>
+                            <li *ngFor="let log of logs" style="margin-top:0.5em;">
+                                <p class={{log.class}}>{{log.log}}</p>
+                            </li>
+                        </div>
+
+                        <div class="uk-modal-footer uk-text-right">
+                            <button class="uk-button uk-button-default uk-modal-close" type="button">Cancel</button>
+                            <button class="uk-button uk-button-primary" type="button">Save</button>
+                        </div>
+
+                    </div>
+                </div>
+
+                <!-- <ul class="uk-pagination" uk-margin>
+          <li><a href="#"><span uk-pagination-previous></span></a></li>
+          <li><a href="#">1</a></li>
+          <li class="uk-disabled"><span>...</span></li>
+          <li><a href="#">4</a></li>
+          <li><a href="#">5</a></li>
+          <li><a href="#">6</a></li>
+          <li class="uk-active"><span>7</span></li>
+          <li><a href="#">8</a></li>
+          <li><a href="#">9</a></li>
+          <li><a href="#">10</a></li>
+          <li class="uk-disabled"><span>...</span></li>
+          <li><a href="#">20</a></li>
+          <li><a href="#"><span uk-pagination-next></span></a></li>
+      </ul> -->
+            </div>
+        </div>
+    </div>
+    <div id="right_service_list" class="col-md-0" style="padding: 0;padding-left:1em;background: transparent;height: 100%;overflow: auto;display: none;">
+        <div class="col-md-12" style="padding: 2em;background: #fff;height: 100%;overflow: auto;border-radius: 6px;">
+            <ul class="uk-tab" uk-tab>
+                <li class="uk-active">
+                    <a href="#container"> 服务列表 </a>
+                </li>
+
+                <span (click)="closeServiceList()" style="color:#888;float: right;" class="glyphicon glyphicon-remove"></span>
+
+            </ul>
+            <ul>
+                <li *ngFor="let service of services" style="margin-top:0.5em;">
+                    <p>{{service.codeBuild.projectName}}</p>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+</div>
+<div class="col-md-11" style="padding: 1em;background: transparent;height:5%;text-align: center;">
+    <span style="color:#aaa;">CENOSTACK.COM 构建敏捷团队</span>&nbsp;&nbsp;
+    <a href="Mailto:nerosoft@outlook.com" style="color:#eee;">@CENOSTACK</a>&nbsp;&nbsp;
+    <span style="color:#aaa;">V1.7.11 Alpha</span>
+    <span>
+    <span class="fa fa-github fa-1x" style="color:#aaa;margin-left: 1em;"></span>
+    <span class="fa fa-qq fa-1x" style="color:#aaa;margin-left: 1em;"></span>
+    <span class="fa fa-weixin fa-1x" style="color:#aaa;margin-left: 1em;"></span>
+    <span class="fa fa-weibo fa-1x" style="color:#aaa;margin-left: 1em;"></span>
+    </span>
+</div>

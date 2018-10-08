@@ -1,0 +1,70 @@
+<app-left></app-left>
+<div class="col-md-11" style="padding: 1em;height:5%;display:table-cell;vertical-align:middle;font-weight:bolder;background: transparent;color: #fff;z-index:99;">
+    <ul class="uk-breadcrumb">
+        <li><a href="#">DevOps</a></li>
+        <li><a href="#">服务</a></li>
+        <li><a href="#">Java</a></li>
+        <li><span>列表</span></li>
+    </ul>
+</div>
+<div class="col-md-11" style="padding: 1em;background: transparent;height: 90%;">
+
+    <div class="col-md-12" style="padding: 1em;background: #fff;height: 100%;overflow: auto;border-radius: 6px;">
+        <div class="col-md-12" style="margin-top:1em;margin-bottom: 2em;">
+            <ul class="uk-tab" uk-tab>
+                <li class="uk-active">
+                    <a href="#container"> 服务列表 </a>
+                </li>
+            </ul>
+            <div class="col-md-12" style="padding:0;margin:0;overflow: auto;">
+                <table class="uk-table uk-table-divider">
+
+                    <thead>
+                        <tr>
+                            <th>服务名称</th>
+                            <th>主机</th>
+                            <th>环境</th>
+                            <th>端口</th>
+                            <!-- <th>本地代码目录</th> -->
+                            <!-- <th>本地构建目录</th> -->
+                            <th>分支 | 版本</th>
+                            <!-- <th>远程部署目录</th> -->
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+
+                        <tr *ngFor="let service of services">
+                            <th><span class="cc-span cc-span-normal">Java</span>&nbsp;{{service.codeBuild.projectName}}</th>
+                            <th>{{service.deployPackage.containerName}}</th>
+                            <th>{{service.serviceOther.port}}</th>
+                            <th>{{service.serviceOther.env}}</th>
+                            <!-- <th>{{service.codeBuild.codePath}}</th> -->
+                            <!-- <th>{{service.codeBuild.buildPath}}</th> -->
+                            <th>{{service.codeBuild.gitBranch}} | {{service.serviceOther.version}}</th>
+                            <!-- <th>{{service.deployPackage.remoteDeployPath}}</th> -->
+                            <th>
+                                <button (click)="moveService(service.serviceOther.serviceId)" class="cc-button" disabled="disabled">迁移</button>&nbsp;
+                                <button (click)="removeService(service.serviceOther.serviceId)" class="cc-button" disabled="disabled">卸载</button>
+                            </th>
+                        </tr>
+
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<div class="col-md-11" style="padding: 1em;background: transparent;height:5%;text-align: center;">
+    <span style="color:#aaa;">CENOSTACK.COM 构建敏捷团队</span>&nbsp;&nbsp;
+    <a href="Mailto:nerosoft@outlook.com" style="color:#eee;">@CENOSTACK</a>&nbsp;&nbsp;
+    <span style="color:#aaa;">V1.7.11 Alpha</span>
+    <span>
+    <span class="fa fa-github fa-1x" style="color:#aaa;margin-left: 1em;"></span>
+    <span class="fa fa-qq fa-1x" style="color:#aaa;margin-left: 1em;"></span>
+    <span class="fa fa-weixin fa-1x" style="color:#aaa;margin-left: 1em;"></span>
+    <span class="fa fa-weibo fa-1x" style="color:#aaa;margin-left: 1em;"></span>
+    </span>
+</div>

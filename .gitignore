@@ -1,0 +1,8 @@
+# Created by .ignore support plugin (hsz.mobi)
+.idea
+build/*
+*/target
+将删除 .gitignore
+将删除 .idea/sonarlint/
+将删除 build/
+将删除 ui/node_modules/*

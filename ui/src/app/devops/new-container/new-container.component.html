@@ -1,0 +1,81 @@
+<app-left></app-left>
+<div class="col-md-11" style="padding: 1em;height:5%;display:table-cell;vertical-align:middle;font-weight:bolder;background: transparent;color: #fff;z-index:99;">
+    <ul class="uk-breadcrumb">
+        <li><a href="#">DevOps</a></li>
+        <li><a href="#">容器</a></li>
+        <li><span>新增</span></li>
+    </ul>
+</div>
+<div class="col-md-11" style="padding: 1em;background: transparent;height: 90%;">
+    <div class="col-md-12" style="background: #fff;height: 100%;border-radius: 6px;">
+        <div class="col-md-12" style="margin-top:2em;margin-bottom: 2em;">
+            <ul class="uk-tab" uk-tab>
+                <li class="uk-active">
+                    <a href="#container"> 添加容器 </a>
+                </li>
+                <li>
+                    <a href="#container"> 创建容器 </a>
+                </li>
+            </ul>
+            <div class="col-md-12" style="padding: 1em;">
+                <div class="uk-margin">
+                    <input (keyup)="nameChange($event)" class="uk-input" type="text" placeholder="容器名称">
+                </div>
+                <div class="uk-margin">
+                    <input (keyup)="addressChange($event)" class="uk-input" type="text" placeholder="地址">
+                </div>
+                <div class="uk-margin">
+                    <input (keyup)="portChange($event)" class="uk-input" type="text" placeholder="端口">
+                </div>
+                <div class="uk-margin">
+                    <input (keyup)="userChange($event)" class="uk-input" type="text" placeholder="用户名">
+                </div>
+                <div class="uk-margin">
+                    <input (keyup)="pwdChange($event)" class="uk-input" type="text" placeholder="密码">
+                </div>
+                <div class="uk-margin">
+                    <textarea (keyup)="descChange($event)" class="uk-textarea" rows="5" placeholder="备注"></textarea>
+                </div>
+
+                <button (click)="addContainer()" class="cc-button cc-button-ring-blue">添加</button>&nbsp;
+                <a class="cc-button cc-button-ring-blue" href="#modal-overflow" uk-toggle>使用必读</a>
+
+                <div id="modal-overflow" uk-modal>
+                    <div class="uk-modal-dialog">
+
+                        <button class="uk-modal-close-default" type="button" uk-close></button>
+
+                        <div class="uk-modal-header">
+                            <h2 class="uk-modal-title">使用必读</h2>
+                        </div>
+
+                        <div class="uk-modal-body" uk-overflow-auto>
+                            <p>如果您点开了这个就说明您需要添加容器。那么，请遵守以下几点：</p>
+                            <p>1. 容器名称请不要用中文与特殊字符(-_)除外。</p>
+                            <p>2. 该地址，端口，用户名，密码，请确认能ssh成功。</p>
+                            <p>3. 若地址为局域网地址，请确认该地址可以从devops平台部署地址访问。</p>
+                        </div>
+
+                        <div class="uk-modal-footer uk-text-right">
+                            <button class="uk-button uk-button-primary uk-modal-close" type="button">我知道了</button>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="col-md-11" style="padding: 1em;background: transparent;height:5%;text-align: center;">
+    <span style="color:#aaa;">CENOSTACK.COM 构建敏捷团队</span>&nbsp;&nbsp;
+    <a href="Mailto:nerosoft@outlook.com" style="color:#eee;">@CENOSTACK</a>&nbsp;&nbsp;
+    <span style="color:#aaa;">V1.7.11 Alpha</span>
+    <span>
+    <span class="fa fa-github fa-1x" style="color:#aaa;margin-left: 1em;"></span>
+    <span class="fa fa-qq fa-1x" style="color:#aaa;margin-left: 1em;"></span>
+    <span class="fa fa-weixin fa-1x" style="color:#aaa;margin-left: 1em;"></span>
+    <span class="fa fa-weibo fa-1x" style="color:#aaa;margin-left: 1em;"></span>
+    </span>
+</div>

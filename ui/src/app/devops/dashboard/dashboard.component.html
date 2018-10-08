@@ -1,0 +1,118 @@
+<app-left></app-left>
+<div class="col-md-11" style="padding: 1em;height:5%;font-weight:bolder;background: transparent;color: #fff;z-index:99;display:table-cell;vertical-align:middle;">
+    <ul class="uk-breadcrumb">
+        <li><a href="#">DevOps</a></li>
+        <li><span>DashBoard</span></li>
+    </ul>
+</div>
+<div class="col-md-11" style="background: transparent;padding:0;height: 90%;">
+
+    <div class="col-md-4" style="padding: 2em;background: transparent;height: 100%;padding:1em;padding-right:0.5em;">
+        <div class="col-md-12" style="background:#fff;height:100%;padding:2em;border-radius: 6px;">
+            <ul class="uk-tab" uk-tab>
+                <li class="uk-active">
+                    <a href="#container"> 概览 </a>
+                </li>
+            </ul>
+            <div class="col-md-12" style="text-align:center;">
+                <div class="uk-child-width-1-2@s" uk-grid>
+                    <div>
+                        <div class="uk-primary uk-background-muted uk-padding">
+                            <h3>服务</h3>
+                            <p><span id="serviceCount"></span>个服务正在运行</p>
+                        </div>
+                    </div>
+                    <div>
+                        <div class="uk-primary uk-background-muted uk-padding">
+                            <h3>容器</h3>
+                            <p><span id="containerCount"></span>个容器正在运行</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="uk-child-width-1-2@s" uk-grid>
+                    <div>
+                        <div class="uk-primary uk-background-muted uk-padding">
+                            <h3>构建</h3>
+                            <p><span id="buildCount"></span>个版本构建</p>
+                        </div>
+                    </div>
+                    <div>
+                        <div class="uk-primary uk-background-muted uk-padding">
+                            <h3>拉取</h3>
+                            <p><span id="gitCount"></span>个项目代码</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4" style="padding: 2em;background: transparent;height: 100%;padding:1em;padding-left:0.5em;padding-right:0.5em;">
+        <div class="col-md-12" style="background:#fff;height:100%;padding:2em;border-radius: 6px;">
+            <ul class="uk-tab" uk-tab>
+                <li class="uk-active">
+                    <a href="#container"> 我的 </a>
+                </li>
+            </ul>
+            <div class="col-md-12" style="text-align:center;">
+
+                <div class="col-md-12" style="background:#f8f8f8;padding:1em;">
+                    <h4 class="col-md-2" style="padding:0;margin:0;">服务</h4>
+                    <p class="col-md-5" style="padding:0;margin:0;"><span id="myServiceCount"></span>个服务正在运行</p>
+                    <a class="col-md-5" href="services"><button class="uk-button uk-button-default">查看</button></a>
+                </div>
+
+                <div class="col-md-12" style="background:#f8f8f8;padding:1em;margin-top:1em;">
+                    <h4 class="col-md-2" style="padding:0;margin:0;">服务</h4>
+                    <p class="col-md-5" style="padding:0;margin:0;"><span id="myContainerCount"></span>个容器正在运行</p>
+                    <a class="col-md-5" href="containers"><button class="uk-button uk-button-default">查看</button></a>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <div class="col-md-4" style="padding: 2em;background: transparent;height: 100%;padding:1em;padding-left: 0.5em;">
+        <div class="col-md-12" style="background:#fff;height:100%;padding:2em;border-radius: 6px;">
+            <ul class="uk-tab" uk-tab>
+                <li class="uk-active">
+                    <a href="#container"> devops 记录 </a>
+                </li>
+            </ul>
+            <ul class="uk-list" style="height:85%;overflow:auto;">
+                <li *ngFor="let log of devLogs" (click)="showLogDetail(log.id)"><span id="log-span-{{log.id}}" class="fa fa-caret-right cc-span"></span><span class="cc-span cc-span-minor">{{log.name}}</span><span class="cc-span cc-span-normal">{{log.time}}</span><span class="cc-span cc-span-{{log.command}}">{{log.command}}</span>
+                    <span class="cc-span cc-span-normal">{{log.arg}}</span>
+                    <div class="col-md-12" style="display:none;padding-left:1.6em;padding-right:1.6em;" id="toggle-log-{{log.id}}">
+                        <div class="col-md-12 cc-span-normal" style="padding:0;margin:0;padding:1em;">
+
+                            <p class="col-md-12" style="padding:0;margin:0;margin-top:1em;"><span style="font-weight:bolder;">操作类型</span>: &nbsp;{{log.command}} {{log.arg}}</p>
+                            <p class="col-md-12" style="padding:0;margin:0;margin-top:1em;"><span style="font-weight:bolder;">详情</span>: &nbsp;{{log.content}}</p>
+                        </div>
+                        <p class="col-md-6 cc-span cc-span-git" style="padding:0;margin:0;text-align: center;padding-top:0.2em;padding-bottom:0.2em;">用户:{{log.name}}</p>
+                        <p class="col-md-6 cc-span cc-span-git" style="padding:0;margin:0;text-align: center;padding-top:0.2em;padding-bottom:0.2em;">时间:{{log.time}}</p>
+
+                    </div>
+
+                </li>
+
+            </ul>
+
+            <button (click)="loadMoreLogs()" class="cc-button cc-button-ring-blue" style="margin-top:1em;">加载更多</button>
+        </div>
+    </div>
+
+
+
+
+
+</div>
+<div class="col-md-11" style="padding: 1em;background: transparent;height:5%;text-align: center;">
+    <span style="color:#aaa;">CENOSTACK.COM 构建敏捷团队</span>&nbsp;&nbsp;
+    <a href="Mailto:nerosoft@outlook.com" style="color:#eee;">@CENOSTACK</a>&nbsp;&nbsp;
+    <span style="color:#aaa;">V1.7.11 Alpha</span>
+    <span>
+    <span class="fa fa-github fa-1x" style="color:#aaa;margin-left: 1em;"></span>
+    <span class="fa fa-qq fa-1x" style="color:#aaa;margin-left: 1em;"></span>
+    <span class="fa fa-weixin fa-1x" style="color:#aaa;margin-left: 1em;"></span>
+    <span class="fa fa-weibo fa-1x" style="color:#aaa;margin-left: 1em;"></span>
+    </span>
+</div>

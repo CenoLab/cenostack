@@ -1,0 +1,70 @@
+.orange {
+  color: orange;
+}
+
+.green {
+  color: green;
+}
+
+.red {
+  color: red;
+}
+
+* {
+  outline: none;
+}
+
+input::-webkit-input-placeholder {
+  /* placeholder颜色  */
+  color: #333;
+  /* placeholder字体大小  */
+  font-size: 12px;
+  /* placeholder位置  */
+  text-align: left;
+}
+
+.spinner {
+  width: 20px;
+  height: 20px;
+  margin: 0px 0px;
+  background-color: #fff;
+  border-radius: 100%;
+  -webkit-animation: scaleout 1.0s infinite ease-in-out;
+  animation: scaleout 1.0s infinite ease-in-out;
+}
+
+@-webkit-keyframes scaleout {
+  0% {
+    -webkit-transform: scale(0.0)
+  }
+
+  100% {
+    -webkit-transform: scale(1.0);
+    opacity: 0;
+  }
+}
+
+@keyframes scaleout {
+  0% {
+    transform: scale(0.0);
+    -webkit-transform: scale(0.0);
+  }
+
+  100% {
+    transform: scale(1.0);
+    -webkit-transform: scale(1.0);
+    opacity: 0;
+  }
+}
+
+li {
+  list-style-type: none;
+}
+
+
+.uk-background-muted{
+  border: solid 1px #fff;
+}
+.uk-background-muted:hover{
+  border: solid 1px #39f;
+}

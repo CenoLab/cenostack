@@ -1,0 +1,58 @@
+<div class="col-md-1" style="background: transparent;height: 100%;padding: 0;">
+
+    <ul class="col-md-12" style="display: inline-block;margin:0;padding:0;padding-left:1em;">
+        <a href="/dashboard">
+            <li id="left-l-nav" style="color:#888;"></li>
+        </a>
+        <li id="left-l-nav" uk-toggle="target: #toggle-project"><span class="glyphicon glyphicon-list"></span>&nbsp;项目 <span style="float:right;font-size:0.5em;margin-top:1em;padding-right:1em;" class="glyphicon glyphicon-menu-down"></span></li>
+        <ul id="toggle-project" style="padding:0;margin:0;">
+            <a href="/deploy">
+                <li id="left-nav">新建项目</li>
+            </a>
+            <a href="/services">
+                <li id="left-nav">项目列表</li>
+            </a>
+            <a href="/kanban">
+                <li id="left-nav">项目看板</li>
+            </a>
+        </ul>
+        <li id="left-l-nav" uk-toggle="target: #toggle-java"><span class="glyphicon glyphicon-random"></span>&nbsp;后端服务 <span style="float:right;font-size:0.5em;margin-top:1em;padding-right:1em;" class="glyphicon glyphicon-menu-down"></span></li>
+        <ul id="toggle-java" style="padding:0;margin:0;">
+            <a href="/deploy">
+                <li id="left-nav">部署服务</li>
+            </a>
+            <a href="/services">
+                <li id="left-nav">服务列表</li>
+            </a>
+        </ul>
+
+        <li id="left-l-nav" uk-toggle="target: #toggle-node"><span class="glyphicon glyphicon-random"></span>&nbsp;前端服务 <span style="float:right;font-size:0.5em;margin-top:1em;padding-right:1em;" class="glyphicon glyphicon-menu-down"></span></li>
+        <ul id="toggle-node" style="padding:0;margin:0;">
+            <a href="/nodejs">
+                <li id="left-nav">部署服务</li>
+            </a>
+            <a href="/services">
+                <li id="left-nav">服务列表</li>
+            </a>
+        </ul>
+
+        <li id="left-l-nav" uk-toggle="target: #toggle-container"><span class="fa fa-cubes"></span>&nbsp;容器 <span style="float:right;font-size:0.5em;margin-top:1em;padding-right:1em;" class="glyphicon glyphicon-menu-down"></span></li>
+        <ul id="toggle-container" style="padding:0;margin:0;">
+            <a href="/add-container">
+                <li id="left-nav">添加容器</li>
+            </a>
+            <a href="/containers">
+                <li id="left-nav">容器列表</li>
+            </a>
+        </ul>
+        <li id="left-l-nav" uk-toggle="target: #toggle-tools"><span class="glyphicon glyphicon-briefcase"></span>&nbsp;工具 <span style="float:right;font-size:0.5em;margin-top:1em;padding-right:1em;" class="glyphicon glyphicon-menu-down"></span></li>
+        <ul id="toggle-tools" style="padding:0;margin:0;">
+            <a href="/wessh">
+                <li id="left-nav">终端</li>
+            </a>
+            <a href="/eurake">
+                <li id="left-nav">Eurake</li>
+            </a>
+        </ul>
+    </ul>
+</div>

@@ -1,0 +1,145 @@
+/* You can add global styles to this file, and also import other style files */
+
+body {
+    padding: 0;
+    margin: 0;
+    height: 100%;
+    background-image: url(https://img.alicdn.com/tfs/TB1_YvwXTtYBeNjy1XdXXXXyVXa-1680-370.png);
+    background: url(//res.wx.qq.com/a/wx_fed/webwx/res/static/img/2zrdI1g.jpg) no-repeat 50%;
+    background-image: url(https://img11.360buyimg.com/pop/jfs/t24148/340/541921640/319499/3722e955/5b360980Nc8ca693c.png);
+    width: 100%;
+    background-color: #2e323f;
+    background-color: #000;
+    background-size: 100%;
+    background-repeat: no-repeat;
+}
+
+a {
+    text-decoration: none;
+    color: #fff;
+}
+
+a:hover {
+    text-decoration: none;
+    color: #fff;
+}
+
+html {
+    height: 100%;
+}
+
+.uk-tab .uk-active a {
+    color: #1e87f0;
+}
+
+.cc-button {
+    max-width: 200px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    border-right: 0;
+    padding-right: 24px;
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+    text-decoration: none;
+    display: inline-block;
+    position: relative;
+    z-index: 0;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    height: 24px;
+    line-height: 24px;
+    padding: 0 16px;
+    margin: 0;
+    outline: 0;
+    border: 0;
+    border-radius: 3px;
+    -webkit-box-shadow: inset 0 1px 0 0 #ccc, inset 1px 0 0 0 #ccc, inset -1px 0 0 0 #ccc, inset 0 -1px 0 0 #bfbfbf;
+    box-shadow: inset 0 1px 0 0 #ccc, inset 1px 0 0 0 #ccc, inset -1px 0 0 0 #ccc, inset 0 -1px 0 0 #bfbfbf;
+    cursor: default;
+}
+
+.cc-button-ring-blue {
+    background-color: #25b7ff;
+    background-image: -webkit-gradient(linear, left bottom, left top, from(#0084ff), to(#25b7ff));
+    background-image: -webkit-linear-gradient(bottom, #0084ff, #25b7ff);
+    background-image: linear-gradient(to top, #0084ff, #25b7ff);
+    -webkit-box-shadow: inset 0 -2px 0 -1px #015099;
+    box-shadow: inset 0 -2px 0 -1px #015099;
+    color: #fff;
+}
+
+.cc-button-ring-blue:hover {
+    background-color: #25b7ff;
+    background-image: -webkit-gradient(linear, left bottom, left top, from(#0084ff), to(#25b7ff));
+    background-image: -webkit-linear-gradient(bottom, #25b7ff, #0084ff, );
+    background-image: linear-gradient(to top, #25b7ff, #0084ff);
+    -webkit-box-shadow: inset 0 -2px 0 -1px #015099;
+    box-shadow: inset 0 -2px 0 -1px #015099;
+    color: #aaa;
+}
+
+.cc-button-ring {
+    color: #444;
+    font-size: 12px;
+    font-family: -apple-system, BlinkMacSystemFont, "Helvetica Neue", Arial, sans-serif;
+    background-color: #fff;
+    background-image: -webkit-gradient(linear, left bottom, left top, from(#f0f0f0), to(#fff));
+    background-image: -webkit-linear-gradient(bottom, #f0f0f0, #fff);
+    background-image: linear-gradient(to top, #f0f0f0, #fff);
+    color: #444;
+}
+
+.cc-span {
+    display: inline-block;
+    padding: 0.1em;
+    padding-left: 0.5em;
+    padding-right: 0.5em;
+}
+
+.cc-span-normal {
+    display: inline-block;
+    background-color: rgb(230, 246, 207);
+    color: rgb(77, 164, 0);
+}
+
+.cc-span-major {
+    display: inline-block;
+    background-color: #FFEE9C;
+    color: #B45F06;
+}
+
+.cc-span-minor {
+    display: inline-block;
+    background-color: #E6E6E6;
+    color: #888888;
+}
+
+.cc-span-critical {
+    display: inline-block;
+    background-color: #FFC8EA;
+    color: #444;
+}
+
+.cc-span-stop {
+    display: inline-block;
+    background-color: #E30000;
+    color: #fff;
+}
+
+.cc-span-git {
+    display: inline-block;
+    background-color: #FFEE9C;
+    color: #B45F06;
+}
+
+.cc-span-maven {
+    display: inline-block;
+    background-color: #FFC8EA;
+    color: #444;
+}
+
+.cc-span-tomcat {
+    display: inline-block;
+    background-color: #E30000;
+    color: #fff;
+}
